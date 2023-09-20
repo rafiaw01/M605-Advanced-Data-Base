@@ -1,0 +1,1089 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.2.1
+- https://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Sep 20, 2023 at 04:43 PM
+- Server version: 10.4.28-MariaDB
+- PHP Version: 8.2.4
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="csv_db 6" collation="utf8_general_ci" charset="utf8">
+            <pma:table name="customer">
+                CREATE TABLE `customer` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `first_name` varchar(100) NOT NULL,
+                  `last_name` varchar(100) NOT NULL,
+                  `customer_email` varchar(100) DEFAULT NULL,
+                  `customer_address` varchar(100) DEFAULT NULL,
+                  `contact_number` varchar(250) DEFAULT NULL,
+                  `customer_review` int(11) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `customer_ibfk_1` (`customer_review`),
+                  CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`customer_review`) REFERENCES `customer_review` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:view name="customer_address">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`customer_address` AS select `csv_db 6`.`customer`.`customer_address` AS `customer_address` from `csv_db 6`.`customer`;
+            </pma:view>
+            <pma:view name="customer_by_lastname">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`customer_by_lastname` AS select `csv_db 6`.`customer`.`last_name` AS `last_name` from `csv_db 6`.`customer`;
+            </pma:view>
+            <pma:view name="customer_greater_thanfive">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`customer_greater_thanfive` AS select `csv_db 6`.`customer`.`id` AS `id`,`csv_db 6`.`customer`.`first_name` AS `first_name`,`csv_db 6`.`customer`.`last_name` AS `last_name`,`csv_db 6`.`customer`.`customer_email` AS `customer_email`,`csv_db 6`.`customer`.`customer_address` AS `customer_address`,`csv_db 6`.`customer`.`contact_number` AS `contact_number`,`csv_db 6`.`customer`.`customer_review` AS `customer_review` from `csv_db 6`.`customer` where `csv_db 6`.`customer`.`id` &gt; 5;
+            </pma:view>
+            <pma:table name="customer_order">
+                CREATE TABLE `customer_order` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `date_of_order` varchar(200) NOT NULL,
+                  `total_order_amount` decimal(8,2) NOT NULL,
+                  `customer_id` int(11) NOT NULL,
+                  `order_type` int(11) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `customer_id` (`customer_id`),
+                  KEY `order_type` (`order_type`),
+                  CONSTRAINT `customer_order_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
+                  CONSTRAINT `customer_order_ibfk_2` FOREIGN KEY (`order_type`) REFERENCES `order_type` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:view name="customer_order_update">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`customer_order_update` AS select `csv_db 6`.`customer_order`.`id` AS `id`,`csv_db 6`.`customer_order`.`date_of_order` AS `date_of_order`,`csv_db 6`.`customer_order`.`total_order_amount` AS `total_order_amount`,`csv_db 6`.`customer_order`.`customer_id` AS `customer_id`,`csv_db 6`.`customer_order`.`order_type` AS `order_type` from `csv_db 6`.`customer_order`;
+            </pma:view>
+            <pma:view name="customer_order_view">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`customer_order_view` AS select `csv_db 6`.`customer_order`.`id` AS `id`,`csv_db 6`.`customer_order`.`date_of_order` AS `date_of_order`,`csv_db 6`.`customer_order`.`total_order_amount` AS `total_order_amount`,`csv_db 6`.`customer_order`.`customer_id` AS `customer_id`,`csv_db 6`.`customer_order`.`order_type` AS `order_type` from `csv_db 6`.`customer_order`;
+            </pma:view>
+            <pma:table name="customer_review">
+                CREATE TABLE `customer_review` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `comment` text NOT NULL,
+                  `comment_date` varchar(200) NOT NULL,
+                  `product_list` int(11) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `customer_review_ibfk_1` (`product_list`),
+                  CONSTRAINT `customer_review_ibfk_1` FOREIGN KEY (`product_list`) REFERENCES `product_list` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:view name="customer_review_view">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`customer_review_view` AS select `csv_db 6`.`customer_review`.`id` AS `id`,`csv_db 6`.`customer_review`.`comment` AS `comment`,`csv_db 6`.`customer_review`.`comment_date` AS `comment_date`,`csv_db 6`.`customer_review`.`product_list` AS `product_list` from `csv_db 6`.`customer_review`;
+            </pma:view>
+            <pma:view name="customer_table_view">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`customer_table_view` AS select `csv_db 6`.`customer`.`id` AS `id`,`csv_db 6`.`customer`.`first_name` AS `first_name`,`csv_db 6`.`customer`.`last_name` AS `last_name`,`csv_db 6`.`customer`.`customer_email` AS `customer_email`,`csv_db 6`.`customer`.`customer_address` AS `customer_address`,`csv_db 6`.`customer`.`contact_number` AS `contact_number`,`csv_db 6`.`customer`.`customer_review` AS `customer_review` from `csv_db 6`.`customer`;
+            </pma:view>
+            <pma:view name="inventory_status_view">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`inventory_status_view` AS select `csv_db 6`.`warehouse_inventory`.`inventory_status` AS `inventory_status` from `csv_db 6`.`warehouse_inventory`;
+            </pma:view>
+            <pma:table name="invoice">
+                CREATE TABLE `invoice` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `payment_type` varchar(300) NOT NULL,
+                  `date_of_invoice` varchar(150) NOT NULL,
+                  `payment_status` varchar(150) NOT NULL,
+                  `customer` int(11) NOT NULL,
+                  `customer_order` int(11) NOT NULL,
+                  `payment_info` int(11) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `customer` (`customer`),
+                  KEY `customer_order` (`customer_order`),
+                  KEY `payment_info` (`payment_info`),
+                  CONSTRAINT `invoice_ibfk_1` FOREIGN KEY (`customer`) REFERENCES `customer` (`id`),
+                  CONSTRAINT `invoice_ibfk_2` FOREIGN KEY (`customer_order`) REFERENCES `customer_order` (`id`),
+                  CONSTRAINT `invoice_ibfk_3` FOREIGN KEY (`payment_info`) REFERENCES `payment_info` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:view name="invoice_view">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`invoice_view` AS select `csv_db 6`.`invoice`.`id` AS `id`,`csv_db 6`.`invoice`.`payment_type` AS `payment_type`,`csv_db 6`.`invoice`.`date_of_invoice` AS `date_of_invoice`,`csv_db 6`.`invoice`.`payment_status` AS `payment_status`,`csv_db 6`.`invoice`.`customer` AS `customer`,`csv_db 6`.`invoice`.`customer_order` AS `customer_order`,`csv_db 6`.`invoice`.`payment_info` AS `payment_info` from `csv_db 6`.`invoice`;
+            </pma:view>
+            <pma:table name="order_list">
+                CREATE TABLE `order_list` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `order_quantity` varchar(300) NOT NULL,
+                  `order_item_price` decimal(8,2) NOT NULL,
+                  `customer_order` int(11) NOT NULL,
+                  `product_list` int(11) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `customer_order` (`customer_order`),
+                  KEY `product_list` (`product_list`),
+                  CONSTRAINT `order_list_ibfk_1` FOREIGN KEY (`customer_order`) REFERENCES `customer_order` (`id`),
+                  CONSTRAINT `order_list_ibfk_2` FOREIGN KEY (`product_list`) REFERENCES `product_list` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:view name="order_list_view">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`order_list_view` AS select `csv_db 6`.`order_list`.`id` AS `id`,`csv_db 6`.`order_list`.`order_quantity` AS `order_quantity`,`csv_db 6`.`order_list`.`order_item_price` AS `order_item_price`,`csv_db 6`.`order_list`.`customer_order` AS `customer_order`,`csv_db 6`.`order_list`.`product_list` AS `product_list` from `csv_db 6`.`order_list`;
+            </pma:view>
+            <pma:table name="order_type">
+                CREATE TABLE `order_type` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `order_delivery` varchar(100) NOT NULL,
+                  `delivery_vendor` varchar(150) NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:view name="order_type_view">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`order_type_view` AS select `csv_db 6`.`order_type`.`id` AS `id`,`csv_db 6`.`order_type`.`order_delivery` AS `order_delivery`,`csv_db 6`.`order_type`.`delivery_vendor` AS `delivery_vendor` from `csv_db 6`.`order_type`;
+            </pma:view>
+            <pma:table name="payment_info">
+                CREATE TABLE `payment_info` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `bank_name` varchar(300) NOT NULL,
+                  `bank_address` varchar(150) NOT NULL,
+                  `bank_email` varchar(150) NOT NULL,
+                  `payment_type` varchar(100) NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:view name="payment_info__view">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`payment_info__view` AS select `csv_db 6`.`payment_info`.`id` AS `id`,`csv_db 6`.`payment_info`.`bank_name` AS `bank_name`,`csv_db 6`.`payment_info`.`bank_address` AS `bank_address`,`csv_db 6`.`payment_info`.`bank_email` AS `bank_email`,`csv_db 6`.`payment_info`.`payment_type` AS `payment_type` from `csv_db 6`.`payment_info`;
+            </pma:view>
+            <pma:table name="product_list">
+                CREATE TABLE `product_list` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `product_name` varchar(300) NOT NULL,
+                  `product_price` decimal(8,2) NOT NULL,
+                  `product_description` varchar(150) NOT NULL,
+                  `supplier_info` int(11) NOT NULL,
+                  `warehouse_inventory` int(11) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `supplier_info` (`supplier_info`),
+                  KEY `warehouse_inventory` (`warehouse_inventory`),
+                  CONSTRAINT `product_list_ibfk_1` FOREIGN KEY (`supplier_info`) REFERENCES `supplier_info` (`id`),
+                  CONSTRAINT `product_list_ibfk_2` FOREIGN KEY (`warehouse_inventory`) REFERENCES `warehouse_inventory` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:view name="product_list_view">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`product_list_view` AS select `csv_db 6`.`product_list`.`id` AS `id`,`csv_db 6`.`product_list`.`product_name` AS `product_name`,`csv_db 6`.`product_list`.`product_price` AS `product_price`,`csv_db 6`.`product_list`.`product_description` AS `product_description`,`csv_db 6`.`product_list`.`supplier_info` AS `supplier_info`,`csv_db 6`.`product_list`.`warehouse_inventory` AS `warehouse_inventory` from `csv_db 6`.`product_list`;
+            </pma:view>
+            <pma:table name="product_return">
+                CREATE TABLE `product_return` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `reason_of_return` text NOT NULL,
+                  `date_of_return` varchar(150) NOT NULL,
+                  `product_list` int(11) NOT NULL,
+                  `invoice` int(11) NOT NULL,
+                  `customer_order` int(11) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `product_list` (`product_list`),
+                  KEY `invoice` (`invoice`),
+                  KEY `customer_order` (`customer_order`),
+                  CONSTRAINT `product_return_ibfk_1` FOREIGN KEY (`product_list`) REFERENCES `product_list` (`id`),
+                  CONSTRAINT `product_return_ibfk_2` FOREIGN KEY (`invoice`) REFERENCES `invoice` (`id`),
+                  CONSTRAINT `product_return_ibfk_3` FOREIGN KEY (`customer_order`) REFERENCES `customer_order` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:view name="product_return_view">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`product_return_view` AS select `csv_db 6`.`product_return`.`id` AS `id`,`csv_db 6`.`product_return`.`reason_of_return` AS `reason_of_return`,`csv_db 6`.`product_return`.`date_of_return` AS `date_of_return`,`csv_db 6`.`product_return`.`product_list` AS `product_list`,`csv_db 6`.`product_return`.`invoice` AS `invoice`,`csv_db 6`.`product_return`.`customer_order` AS `customer_order` from `csv_db 6`.`product_return`;
+            </pma:view>
+            <pma:view name="shipping_company_name">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`shipping_company_name` AS select `csv_db 6`.`shipping_info`.`shipping_company` AS `shipping_info`,count(0) AS `shipping_count` from `csv_db 6`.`shipping_info` group by `csv_db 6`.`shipping_info`.`shipping_company`;
+            </pma:view>
+            <pma:table name="shipping_info">
+                CREATE TABLE `shipping_info` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `shipping_company` varchar(300) NOT NULL,
+                  `contact_info` varchar(150) NOT NULL,
+                  `email` varchar(150) NOT NULL,
+                  `address` varchar(150) NOT NULL,
+                  `shipping_type` varchar(150) NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:view name="shipping_info_view">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`shipping_info_view` AS select `csv_db 6`.`shipping_info`.`id` AS `id`,`csv_db 6`.`shipping_info`.`shipping_company` AS `shipping_company`,`csv_db 6`.`shipping_info`.`contact_info` AS `contact_info`,`csv_db 6`.`shipping_info`.`email` AS `email`,`csv_db 6`.`shipping_info`.`address` AS `address`,`csv_db 6`.`shipping_info`.`shipping_type` AS `shipping_type` from `csv_db 6`.`shipping_info`;
+            </pma:view>
+            <pma:table name="supplier_info">
+                CREATE TABLE `supplier_info` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `supplier_name` varchar(300) NOT NULL,
+                  `supplier_contact_number` varchar(150) NOT NULL,
+                  `supplier_email` varchar(150) NOT NULL,
+                  `supplier_address` int(11) NOT NULL,
+                  `supplier_country` int(11) NOT NULL,
+                  `shipping_info` int(11) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `shipping_info` (`shipping_info`),
+                  CONSTRAINT `supplier_info_ibfk_1` FOREIGN KEY (`shipping_info`) REFERENCES `shipping_info` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:view name="supplier_info_table">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`supplier_info_table` AS select `csv_db 6`.`supplier_info`.`id` AS `id`,`csv_db 6`.`supplier_info`.`supplier_name` AS `supplier_name`,`csv_db 6`.`supplier_info`.`supplier_contact_number` AS `supplier_contact_number`,`csv_db 6`.`supplier_info`.`supplier_email` AS `supplier_email`,`csv_db 6`.`supplier_info`.`supplier_address` AS `supplier_address`,`csv_db 6`.`supplier_info`.`supplier_country` AS `supplier_country`,`csv_db 6`.`supplier_info`.`shipping_info` AS `shipping_info` from `csv_db 6`.`supplier_info`;
+            </pma:view>
+            <pma:table name="warehouse_inventory">
+                CREATE TABLE `warehouse_inventory` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `floor` varchar(300) NOT NULL,
+                  `zone` varchar(150) NOT NULL,
+                  `inventory_status` varchar(150) NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:view name="warehouse_inventory_view">
+                CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `csv_db 6`.`warehouse_inventory_view` AS select `csv_db 6`.`warehouse_inventory`.`id` AS `id`,`csv_db 6`.`warehouse_inventory`.`floor` AS `floor`,`csv_db 6`.`warehouse_inventory`.`zone` AS `zone`,`csv_db 6`.`warehouse_inventory`.`inventory_status` AS `inventory_status` from `csv_db 6`.`warehouse_inventory`;
+            </pma:view>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'csv_db 6'
+    -->
+    <database name="csv_db 6">
+        <!-- Table customer -->
+        <table name="customer">
+            <column name="id">1</column>
+            <column name="first_name">awais</column>
+            <column name="last_name">rafi</column>
+            <column name="customer_email">awaisrafi2009@gmail.com</column>
+            <column name="customer_address">michaelkirch</column>
+            <column name="contact_number">1234567890</column>
+            <column name="customer_review">1</column>
+        </table>
+        <table name="customer">
+            <column name="id">2</column>
+            <column name="first_name">rafi</column>
+            <column name="last_name">zulu</column>
+            <column name="customer_email">rafiawais3009@gmail.com</column>
+            <column name="customer_address">kirchmicahel</column>
+            <column name="contact_number">0987654321</column>
+            <column name="customer_review">2</column>
+        </table>
+        <table name="customer">
+            <column name="id">3</column>
+            <column name="first_name">hewlett</column>
+            <column name="last_name">packard</column>
+            <column name="customer_email">hewlettpackard2909@gmail.com</column>
+            <column name="customer_address">kirchstrasse</column>
+            <column name="contact_number">1234567890</column>
+            <column name="customer_review">3</column>
+        </table>
+        <table name="customer">
+            <column name="id">4</column>
+            <column name="first_name">pcikard</column>
+            <column name="last_name">hewlett</column>
+            <column name="customer_email">packardhewlet20009@gmail.com</column>
+            <column name="customer_address">michstrasse</column>
+            <column name="contact_number">1234509876</column>
+            <column name="customer_review">4</column>
+        </table>
+        <table name="customer">
+            <column name="id">5</column>
+            <column name="first_name">bang</column>
+            <column name="last_name">olufsen</column>
+            <column name="customer_email">bangolufsen9002@gmail.com</column>
+            <column name="customer_address">bangkirchstrase</column>
+            <column name="contact_number">5432167890</column>
+            <column name="customer_review">5</column>
+        </table>
+        <table name="customer">
+            <column name="id">6</column>
+            <column name="first_name">apple</column>
+            <column name="last_name">orange</column>
+            <column name="customer_email">appleorange2009@hotmail.com</column>
+            <column name="customer_address">bananaestrass</column>
+            <column name="contact_number">5674328901</column>
+            <column name="customer_review">6</column>
+        </table>
+        <table name="customer">
+            <column name="id">7</column>
+            <column name="first_name">melon</column>
+            <column name="last_name">grape</column>
+            <column name="customer_email">grapielemone968@gmail.com</column>
+            <column name="customer_address">zebrstrasse</column>
+            <column name="contact_number">1234567890</column>
+            <column name="customer_review">7</column>
+        </table>
+        <table name="customer">
+            <column name="id">8</column>
+            <column name="first_name">sezal</column>
+            <column name="last_name">elanor</column>
+            <column name="customer_email">rivercash2349@gmail.com</column>
+            <column name="customer_address">sweetkirch</column>
+            <column name="contact_number">2134567890</column>
+            <column name="customer_review">8</column>
+        </table>
+        <table name="customer">
+            <column name="id">9</column>
+            <column name="first_name">adam</column>
+            <column name="last_name">berry</column>
+            <column name="customer_email">atlanicsazom2229@gmail.com</column>
+            <column name="customer_address">berlinkirch</column>
+            <column name="contact_number">1234567089</column>
+            <column name="customer_review">9</column>
+        </table>
+        <table name="customer">
+            <column name="id">10</column>
+            <column name="first_name">cheezy</column>
+            <column name="last_name">whiteez</column>
+            <column name="customer_email">crispyzulu209@gmail.com</column>
+            <column name="customer_address">eggsykirch</column>
+            <column name="contact_number">1299567890</column>
+            <column name="customer_review">10</column>
+        </table>
+        <!-- Table customer_order -->
+        <table name="customer_order">
+            <column name="id">1</column>
+            <column name="date_of_order">01-01-23</column>
+            <column name="total_order_amount">23.06</column>
+            <column name="customer_id">1</column>
+            <column name="order_type">0</column>
+        </table>
+        <table name="customer_order">
+            <column name="id">2</column>
+            <column name="date_of_order">10-01-23</column>
+            <column name="total_order_amount">56.60</column>
+            <column name="customer_id">2</column>
+            <column name="order_type">0</column>
+        </table>
+        <table name="customer_order">
+            <column name="id">3</column>
+            <column name="date_of_order">20-01-23</column>
+            <column name="total_order_amount">70.06</column>
+            <column name="customer_id">3</column>
+            <column name="order_type">0</column>
+        </table>
+        <table name="customer_order">
+            <column name="id">4</column>
+            <column name="date_of_order">01-02-23</column>
+            <column name="total_order_amount">10.23</column>
+            <column name="customer_id">4</column>
+            <column name="order_type">0</column>
+        </table>
+        <table name="customer_order">
+            <column name="id">5</column>
+            <column name="date_of_order">20-02-23</column>
+            <column name="total_order_amount">5.00</column>
+            <column name="customer_id">5</column>
+            <column name="order_type">0</column>
+        </table>
+        <table name="customer_order">
+            <column name="id">6</column>
+            <column name="date_of_order">01-03-23</column>
+            <column name="total_order_amount">66.23</column>
+            <column name="customer_id">6</column>
+            <column name="order_type">0</column>
+        </table>
+        <table name="customer_order">
+            <column name="id">7</column>
+            <column name="date_of_order">05-03-23</column>
+            <column name="total_order_amount">66.23</column>
+            <column name="customer_id">7</column>
+            <column name="order_type">0</column>
+        </table>
+        <table name="customer_order">
+            <column name="id">8</column>
+            <column name="date_of_order">10-03-23</column>
+            <column name="total_order_amount">83.50</column>
+            <column name="customer_id">8</column>
+            <column name="order_type">0</column>
+        </table>
+        <table name="customer_order">
+            <column name="id">9</column>
+            <column name="date_of_order">15-04-23</column>
+            <column name="total_order_amount">13.10</column>
+            <column name="customer_id">9</column>
+            <column name="order_type">0</column>
+        </table>
+        <table name="customer_order">
+            <column name="id">10</column>
+            <column name="date_of_order">20-04-23</column>
+            <column name="total_order_amount">100.23</column>
+            <column name="customer_id">10</column>
+            <column name="order_type">0</column>
+        </table>
+        <table name="customer_order">
+            <column name="id">11</column>
+            <column name="date_of_order">06-03-23</column>
+            <column name="total_order_amount">66.23</column>
+            <column name="customer_id">11</column>
+            <column name="order_type">11</column>
+        </table>
+        <!-- Table customer_review -->
+        <table name="customer_review">
+            <column name="id">1</column>
+            <column name="comment">Very Good</column>
+            <column name="comment_date">01-01-23</column>
+            <column name="product_list">1</column>
+        </table>
+        <table name="customer_review">
+            <column name="id">2</column>
+            <column name="comment">Good</column>
+            <column name="comment_date">10-01-23</column>
+            <column name="product_list">2</column>
+        </table>
+        <table name="customer_review">
+            <column name="id">3</column>
+            <column name="comment">Very Bad</column>
+            <column name="comment_date">20-01-23</column>
+            <column name="product_list">3</column>
+        </table>
+        <table name="customer_review">
+            <column name="id">4</column>
+            <column name="comment">Bad</column>
+            <column name="comment_date">01-02-23</column>
+            <column name="product_list">4</column>
+        </table>
+        <table name="customer_review">
+            <column name="id">5</column>
+            <column name="comment">Excellent</column>
+            <column name="comment_date">20-02-23</column>
+            <column name="product_list">5</column>
+        </table>
+        <table name="customer_review">
+            <column name="id">6</column>
+            <column name="comment">Good</column>
+            <column name="comment_date">01-03-23</column>
+            <column name="product_list">6</column>
+        </table>
+        <table name="customer_review">
+            <column name="id">7</column>
+            <column name="comment">Excellent</column>
+            <column name="comment_date">05-03-23</column>
+            <column name="product_list">7</column>
+        </table>
+        <table name="customer_review">
+            <column name="id">8</column>
+            <column name="comment">Very Bad</column>
+            <column name="comment_date">10-03-23</column>
+            <column name="product_list">8</column>
+        </table>
+        <table name="customer_review">
+            <column name="id">9</column>
+            <column name="comment">Good</column>
+            <column name="comment_date">15-04-23</column>
+            <column name="product_list">9</column>
+        </table>
+        <table name="customer_review">
+            <column name="id">10</column>
+            <column name="comment">Bad</column>
+            <column name="comment_date">20-04-23</column>
+            <column name="product_list">10</column>
+        </table>
+        <!-- Table invoice -->
+        <table name="invoice">
+            <column name="id">1</column>
+            <column name="payment_type">Cash</column>
+            <column name="date_of_invoice">01-01-23</column>
+            <column name="payment_status">Cleared</column>
+            <column name="customer">1</column>
+            <column name="customer_order">1</column>
+            <column name="payment_info">1</column>
+        </table>
+        <table name="invoice">
+            <column name="id">2</column>
+            <column name="payment_type">Credit</column>
+            <column name="date_of_invoice">10-01-23</column>
+            <column name="payment_status">Pending</column>
+            <column name="customer">2</column>
+            <column name="customer_order">2</column>
+            <column name="payment_info">2</column>
+        </table>
+        <table name="invoice">
+            <column name="id">3</column>
+            <column name="payment_type">Cash</column>
+            <column name="date_of_invoice">20-01-23</column>
+            <column name="payment_status">Cleared</column>
+            <column name="customer">3</column>
+            <column name="customer_order">3</column>
+            <column name="payment_info">3</column>
+        </table>
+        <table name="invoice">
+            <column name="id">4</column>
+            <column name="payment_type">Credit</column>
+            <column name="date_of_invoice">01-02-23</column>
+            <column name="payment_status">Cleared</column>
+            <column name="customer">4</column>
+            <column name="customer_order">4</column>
+            <column name="payment_info">4</column>
+        </table>
+        <table name="invoice">
+            <column name="id">5</column>
+            <column name="payment_type">Credit</column>
+            <column name="date_of_invoice">01-02-23</column>
+            <column name="payment_status">Cleared</column>
+            <column name="customer">5</column>
+            <column name="customer_order">5</column>
+            <column name="payment_info">5</column>
+        </table>
+        <table name="invoice">
+            <column name="id">6</column>
+            <column name="payment_type">Cash</column>
+            <column name="date_of_invoice">01-03-23</column>
+            <column name="payment_status">Pending</column>
+            <column name="customer">6</column>
+            <column name="customer_order">6</column>
+            <column name="payment_info">6</column>
+        </table>
+        <table name="invoice">
+            <column name="id">7</column>
+            <column name="payment_type">Cash</column>
+            <column name="date_of_invoice">05-03-23</column>
+            <column name="payment_status">Pending</column>
+            <column name="customer">7</column>
+            <column name="customer_order">7</column>
+            <column name="payment_info">7</column>
+        </table>
+        <table name="invoice">
+            <column name="id">8</column>
+            <column name="payment_type">Credit</column>
+            <column name="date_of_invoice">10-03-23</column>
+            <column name="payment_status">Cleared</column>
+            <column name="customer">8</column>
+            <column name="customer_order">8</column>
+            <column name="payment_info">8</column>
+        </table>
+        <table name="invoice">
+            <column name="id">9</column>
+            <column name="payment_type">Cash</column>
+            <column name="date_of_invoice">15-04-23</column>
+            <column name="payment_status">Pending</column>
+            <column name="customer">9</column>
+            <column name="customer_order">9</column>
+            <column name="payment_info">9</column>
+        </table>
+        <table name="invoice">
+            <column name="id">10</column>
+            <column name="payment_type">Credit</column>
+            <column name="date_of_invoice">20-04-23</column>
+            <column name="payment_status">Pending</column>
+            <column name="customer">10</column>
+            <column name="customer_order">10</column>
+            <column name="payment_info">10</column>
+        </table>
+        <!-- Table order_list -->
+        <table name="order_list">
+            <column name="id">1</column>
+            <column name="order_quantity">1</column>
+            <column name="order_item_price">23.06</column>
+            <column name="customer_order">1</column>
+            <column name="product_list">1</column>
+        </table>
+        <table name="order_list">
+            <column name="id">2</column>
+            <column name="order_quantity">1</column>
+            <column name="order_item_price">56.60</column>
+            <column name="customer_order">2</column>
+            <column name="product_list">2</column>
+        </table>
+        <table name="order_list">
+            <column name="id">3</column>
+            <column name="order_quantity">1</column>
+            <column name="order_item_price">70.06</column>
+            <column name="customer_order">3</column>
+            <column name="product_list">3</column>
+        </table>
+        <table name="order_list">
+            <column name="id">4</column>
+            <column name="order_quantity">1</column>
+            <column name="order_item_price">10.23</column>
+            <column name="customer_order">4</column>
+            <column name="product_list">4</column>
+        </table>
+        <table name="order_list">
+            <column name="id">5</column>
+            <column name="order_quantity">1</column>
+            <column name="order_item_price">5.00</column>
+            <column name="customer_order">5</column>
+            <column name="product_list">5</column>
+        </table>
+        <table name="order_list">
+            <column name="id">6</column>
+            <column name="order_quantity">1</column>
+            <column name="order_item_price">66.23</column>
+            <column name="customer_order">6</column>
+            <column name="product_list">6</column>
+        </table>
+        <table name="order_list">
+            <column name="id">7</column>
+            <column name="order_quantity">1</column>
+            <column name="order_item_price">66.23</column>
+            <column name="customer_order">7</column>
+            <column name="product_list">7</column>
+        </table>
+        <table name="order_list">
+            <column name="id">8</column>
+            <column name="order_quantity">1</column>
+            <column name="order_item_price">83.50</column>
+            <column name="customer_order">8</column>
+            <column name="product_list">8</column>
+        </table>
+        <table name="order_list">
+            <column name="id">9</column>
+            <column name="order_quantity">1</column>
+            <column name="order_item_price">13.10</column>
+            <column name="customer_order">9</column>
+            <column name="product_list">9</column>
+        </table>
+        <table name="order_list">
+            <column name="id">10</column>
+            <column name="order_quantity">1</column>
+            <column name="order_item_price">100.23</column>
+            <column name="customer_order">10</column>
+            <column name="product_list">10</column>
+        </table>
+        <!-- Table order_type -->
+        <table name="order_type">
+            <column name="id">1</column>
+            <column name="order_delivery">Home</column>
+            <column name="delivery_vendor">DHL</column>
+        </table>
+        <table name="order_type">
+            <column name="id">2</column>
+            <column name="order_delivery">Shop</column>
+            <column name="delivery_vendor">Fedex</column>
+        </table>
+        <table name="order_type">
+            <column name="id">3</column>
+            <column name="order_delivery">Shop</column>
+            <column name="delivery_vendor">DHL</column>
+        </table>
+        <table name="order_type">
+            <column name="id">4</column>
+            <column name="order_delivery">Home</column>
+            <column name="delivery_vendor">DHL</column>
+        </table>
+        <table name="order_type">
+            <column name="id">5</column>
+            <column name="order_delivery">Shop</column>
+            <column name="delivery_vendor">Fedex</column>
+        </table>
+        <table name="order_type">
+            <column name="id">6</column>
+            <column name="order_delivery">Home</column>
+            <column name="delivery_vendor">DHL</column>
+        </table>
+        <table name="order_type">
+            <column name="id">7</column>
+            <column name="order_delivery">Shop</column>
+            <column name="delivery_vendor">Fedex</column>
+        </table>
+        <table name="order_type">
+            <column name="id">8</column>
+            <column name="order_delivery">Home</column>
+            <column name="delivery_vendor">DHL</column>
+        </table>
+        <table name="order_type">
+            <column name="id">9</column>
+            <column name="order_delivery">Shop</column>
+            <column name="delivery_vendor">Fedex</column>
+        </table>
+        <table name="order_type">
+            <column name="id">10</column>
+            <column name="order_delivery">Home</column>
+            <column name="delivery_vendor">Fedex</column>
+        </table>
+        <!-- Table payment_info -->
+        <table name="payment_info">
+            <column name="id">1</column>
+            <column name="bank_name">Nova Scotia</column>
+            <column name="bank_address">Ottawa Street</column>
+            <column name="bank_email">novabank@bnk.com</column>
+            <column name="payment_type">Cash</column>
+        </table>
+        <table name="payment_info">
+            <column name="id">2</column>
+            <column name="bank_name">Chilie Bank</column>
+            <column name="bank_address">Santiago Street</column>
+            <column name="bank_email">chiliebank@bnk.com</column>
+            <column name="payment_type">Credit</column>
+        </table>
+        <table name="payment_info">
+            <column name="id">3</column>
+            <column name="bank_name">Nova Scotia</column>
+            <column name="bank_address">Ottawa Street</column>
+            <column name="bank_email">novabank@bnk.com</column>
+            <column name="payment_type">Cash</column>
+        </table>
+        <table name="payment_info">
+            <column name="id">4</column>
+            <column name="bank_name">Chilie Bank</column>
+            <column name="bank_address">Santiago Street</column>
+            <column name="bank_email">chiliebank@bnk.com</column>
+            <column name="payment_type">Credit</column>
+        </table>
+        <table name="payment_info">
+            <column name="id">5</column>
+            <column name="bank_name">Nova Scotia</column>
+            <column name="bank_address">Ottawa Street</column>
+            <column name="bank_email">novabank@bnk.com</column>
+            <column name="payment_type">Cash</column>
+        </table>
+        <table name="payment_info">
+            <column name="id">6</column>
+            <column name="bank_name">Chilie Bank</column>
+            <column name="bank_address">Santiago Street</column>
+            <column name="bank_email">chiliebank@bnk.com</column>
+            <column name="payment_type">Credit</column>
+        </table>
+        <table name="payment_info">
+            <column name="id">7</column>
+            <column name="bank_name">Nova Scotia</column>
+            <column name="bank_address">Ottawa Street</column>
+            <column name="bank_email">novabank@bnk.com</column>
+            <column name="payment_type">Pay Order</column>
+        </table>
+        <table name="payment_info">
+            <column name="id">8</column>
+            <column name="bank_name">Nova Scotia</column>
+            <column name="bank_address">Ottawa Street</column>
+            <column name="bank_email">novabank@bnk.com</column>
+            <column name="payment_type">Pay Order</column>
+        </table>
+        <table name="payment_info">
+            <column name="id">9</column>
+            <column name="bank_name">Chilie Bank</column>
+            <column name="bank_address">Santiago Street</column>
+            <column name="bank_email">chiliebank@bnk.com</column>
+            <column name="payment_type">Cheque</column>
+        </table>
+        <table name="payment_info">
+            <column name="id">10</column>
+            <column name="bank_name">Nova Scotia</column>
+            <column name="bank_address">Ottawa Street</column>
+            <column name="bank_email">novabank@bnk.com</column>
+            <column name="payment_type">Cash</column>
+        </table>
+        <!-- Table product_list -->
+        <table name="product_list">
+            <column name="id">1</column>
+            <column name="product_name">Printing Paper</column>
+            <column name="product_price">23.06</column>
+            <column name="product_description">Printing Paper with trees from Malaysia</column>
+            <column name="supplier_info">1</column>
+            <column name="warehouse_inventory">1</column>
+        </table>
+        <table name="product_list">
+            <column name="id">2</column>
+            <column name="product_name">Printer INK</column>
+            <column name="product_price">56.60</column>
+            <column name="product_description">Premium Quality INK - Black</column>
+            <column name="supplier_info">2</column>
+            <column name="warehouse_inventory">2</column>
+        </table>
+        <table name="product_list">
+            <column name="id">3</column>
+            <column name="product_name">Power Bank</column>
+            <column name="product_price">70.06</column>
+            <column name="product_description">Energy Certified Power Bank with long duration</column>
+            <column name="supplier_info">3</column>
+            <column name="warehouse_inventory">3</column>
+        </table>
+        <table name="product_list">
+            <column name="id">4</column>
+            <column name="product_name">Mouse</column>
+            <column name="product_price">10.23</column>
+            <column name="product_description">Computer Mouse with ergonomic Design</column>
+            <column name="supplier_info">4</column>
+            <column name="warehouse_inventory">4</column>
+        </table>
+        <table name="product_list">
+            <column name="id">5</column>
+            <column name="product_name">Cartoon Stickers</column>
+            <column name="product_price">5.00</column>
+            <column name="product_description">Kid Stickers for the Fridge</column>
+            <column name="supplier_info">5</column>
+            <column name="warehouse_inventory">5</column>
+        </table>
+        <table name="product_list">
+            <column name="id">6</column>
+            <column name="product_name">KitchenWare</column>
+            <column name="product_price">66.23</column>
+            <column name="product_description">Premium Imported Pans and Pots</column>
+            <column name="supplier_info">6</column>
+            <column name="warehouse_inventory">6</column>
+        </table>
+        <table name="product_list">
+            <column name="id">7</column>
+            <column name="product_name">Shaving Trimmer</column>
+            <column name="product_price">66.23</column>
+            <column name="product_description">Japanese Technology - Trimmer</column>
+            <column name="supplier_info">7</column>
+            <column name="warehouse_inventory">7</column>
+        </table>
+        <table name="product_list">
+            <column name="id">8</column>
+            <column name="product_name">PC Chair</column>
+            <column name="product_price">83.50</column>
+            <column name="product_description">Ready to assemble chair for PC</column>
+            <column name="supplier_info">8</column>
+            <column name="warehouse_inventory">8</column>
+        </table>
+        <table name="product_list">
+            <column name="id">9</column>
+            <column name="product_name">Laundry Bag</column>
+            <column name="product_price">13.10</column>
+            <column name="product_description">Fine Mesh long Lasting Laundry Bag </column>
+            <column name="supplier_info">9</column>
+            <column name="warehouse_inventory">9</column>
+        </table>
+        <table name="product_list">
+            <column name="id">10</column>
+            <column name="product_name">Bed Mattress</column>
+            <column name="product_price">100.23</column>
+            <column name="product_description">Orthopaedic Recommended</column>
+            <column name="supplier_info">10</column>
+            <column name="warehouse_inventory">10</column>
+        </table>
+        <!-- Table product_return -->
+        <table name="product_return">
+            <column name="id">1</column>
+            <column name="reason_of_return">product was damaged in shipping</column>
+            <column name="date_of_return">06-06-23</column>
+            <column name="product_list">5</column>
+            <column name="invoice">5</column>
+            <column name="customer_order">5</column>
+        </table>
+        <table name="product_return">
+            <column name="id">2</column>
+            <column name="reason_of_return">Faulty Product</column>
+            <column name="date_of_return">10-08-23</column>
+            <column name="product_list">3</column>
+            <column name="invoice">3</column>
+            <column name="customer_order">3</column>
+        </table>
+        <table name="product_return">
+            <column name="id">3</column>
+            <column name="reason_of_return">Product notupto standard</column>
+            <column name="date_of_return">02-05-23</column>
+            <column name="product_list">7</column>
+            <column name="invoice">7</column>
+            <column name="customer_order">7</column>
+        </table>
+        <!-- Table shipping_info -->
+        <table name="shipping_info">
+            <column name="id">1</column>
+            <column name="shipping_company">DHL</column>
+            <column name="contact_info">456-789-986</column>
+            <column name="email">dhlcontact@dhl.com</column>
+            <column name="address">berlinstrasse</column>
+            <column name="shipping_type">Road</column>
+        </table>
+        <table name="shipping_info">
+            <column name="id">2</column>
+            <column name="shipping_company">DHL</column>
+            <column name="contact_info">456-789-986</column>
+            <column name="email">dhlcontact@dhl.com</column>
+            <column name="address">berlinstrasse</column>
+            <column name="shipping_type">AIR</column>
+        </table>
+        <table name="shipping_info">
+            <column name="id">3</column>
+            <column name="shipping_company">Fedex</column>
+            <column name="contact_info">654-789-986</column>
+            <column name="email">fedexcontact@dhl.com</column>
+            <column name="address">arcadestrasse</column>
+            <column name="shipping_type">AIR</column>
+        </table>
+        <table name="shipping_info">
+            <column name="id">4</column>
+            <column name="shipping_company">DHL</column>
+            <column name="contact_info">456-789-986</column>
+            <column name="email">dhlcontact@dhl.com</column>
+            <column name="address">berlinstrasse</column>
+            <column name="shipping_type">SHIP</column>
+        </table>
+        <table name="shipping_info">
+            <column name="id">5</column>
+            <column name="shipping_company">Fedex</column>
+            <column name="contact_info">654-789-986</column>
+            <column name="email">fedexcontact@dhl.com</column>
+            <column name="address">arcadestrasse</column>
+            <column name="shipping_type">AIR</column>
+        </table>
+        <table name="shipping_info">
+            <column name="id">6</column>
+            <column name="shipping_company">DHL</column>
+            <column name="contact_info">456-789-986</column>
+            <column name="email">dhlcontact@dhl.com</column>
+            <column name="address">berlinstrasse</column>
+            <column name="shipping_type">SHIP</column>
+        </table>
+        <table name="shipping_info">
+            <column name="id">7</column>
+            <column name="shipping_company">Fedex</column>
+            <column name="contact_info">654-789-986</column>
+            <column name="email">fedexcontact@dhl.com</column>
+            <column name="address">arcadestrasse</column>
+            <column name="shipping_type">AIR</column>
+        </table>
+        <table name="shipping_info">
+            <column name="id">8</column>
+            <column name="shipping_company">DHL</column>
+            <column name="contact_info">456-789-986</column>
+            <column name="email">dhlcontact@dhl.com</column>
+            <column name="address">berlinstrasse</column>
+            <column name="shipping_type">Road</column>
+        </table>
+        <table name="shipping_info">
+            <column name="id">9</column>
+            <column name="shipping_company">Fedex</column>
+            <column name="contact_info">654-789-986</column>
+            <column name="email">fedexcontact@dhl.com</column>
+            <column name="address">arcadestrasse</column>
+            <column name="shipping_type">AIR</column>
+        </table>
+        <table name="shipping_info">
+            <column name="id">10</column>
+            <column name="shipping_company">DHL</column>
+            <column name="contact_info">456-789-986</column>
+            <column name="email">dhlcontact@dhl.com</column>
+            <column name="address">berlinstrasse</column>
+            <column name="shipping_type">AIR</column>
+        </table>
+        <!-- Table supplier_info -->
+        <table name="supplier_info">
+            <column name="id">1</column>
+            <column name="supplier_name">Amsterdam Corp</column>
+            <column name="supplier_contact_number">456-654-123</column>
+            <column name="supplier_email">amsterdamcorp@gmail.com</column>
+            <column name="supplier_address">0</column>
+            <column name="supplier_country">0</column>
+            <column name="shipping_info">0</column>
+        </table>
+        <table name="supplier_info">
+            <column name="id">2</column>
+            <column name="supplier_name">Berlin Corp</column>
+            <column name="supplier_contact_number">456-456-123</column>
+            <column name="supplier_email">berlincorp@gmail.com</column>
+            <column name="supplier_address">0</column>
+            <column name="supplier_country">0</column>
+            <column name="shipping_info">0</column>
+        </table>
+        <table name="supplier_info">
+            <column name="id">3</column>
+            <column name="supplier_name">Helsinki Corp</column>
+            <column name="supplier_contact_number">416-624-183</column>
+            <column name="supplier_email">helsinki@gmail.com</column>
+            <column name="supplier_address">0</column>
+            <column name="supplier_country">0</column>
+            <column name="shipping_info">0</column>
+        </table>
+        <table name="supplier_info">
+            <column name="id">4</column>
+            <column name="supplier_name">Rome Corp</column>
+            <column name="supplier_contact_number">426-666-123</column>
+            <column name="supplier_email">romecorp@gmail.com</column>
+            <column name="supplier_address">0</column>
+            <column name="supplier_country">0</column>
+            <column name="shipping_info">0</column>
+        </table>
+        <table name="supplier_info">
+            <column name="id">5</column>
+            <column name="supplier_name">Madrid Corp</column>
+            <column name="supplier_contact_number">456-654-123</column>
+            <column name="supplier_email">madridcorp@gmail.com</column>
+            <column name="supplier_address">0</column>
+            <column name="supplier_country">0</column>
+            <column name="shipping_info">0</column>
+        </table>
+        <table name="supplier_info">
+            <column name="id">6</column>
+            <column name="supplier_name">Honolulu Corp</column>
+            <column name="supplier_contact_number">446-624-113</column>
+            <column name="supplier_email">honolulucorp@gmail.com</column>
+            <column name="supplier_address">0</column>
+            <column name="supplier_country">0</column>
+            <column name="shipping_info">0</column>
+        </table>
+        <table name="supplier_info">
+            <column name="id">7</column>
+            <column name="supplier_name">Adelaide Corp</column>
+            <column name="supplier_contact_number">987-622-023</column>
+            <column name="supplier_email">adelaidecorp@gmail.com</column>
+            <column name="supplier_address">0</column>
+            <column name="supplier_country">0</column>
+            <column name="shipping_info">0</column>
+        </table>
+        <table name="supplier_info">
+            <column name="id">8</column>
+            <column name="supplier_name">Perth Corp</column>
+            <column name="supplier_contact_number">416-654-133</column>
+            <column name="supplier_email">perthcorp@gmail.com</column>
+            <column name="supplier_address">0</column>
+            <column name="supplier_country">0</column>
+            <column name="shipping_info">0</column>
+        </table>
+        <table name="supplier_info">
+            <column name="id">9</column>
+            <column name="supplier_name">Hamburg Corp</column>
+            <column name="supplier_contact_number">456-604-113</column>
+            <column name="supplier_email">hamburgcorp@gmail.com</column>
+            <column name="supplier_address">0</column>
+            <column name="supplier_country">0</column>
+            <column name="shipping_info">0</column>
+        </table>
+        <table name="supplier_info">
+            <column name="id">10</column>
+            <column name="supplier_name">Lisbon Corp</column>
+            <column name="supplier_contact_number">436-614-123</column>
+            <column name="supplier_email">lisboncorp@gmail.com</column>
+            <column name="supplier_address">0</column>
+            <column name="supplier_country">0</column>
+            <column name="shipping_info">0</column>
+        </table>
+        <!-- Table warehouse_inventory -->
+        <table name="warehouse_inventory">
+            <column name="id">1</column>
+            <column name="floor">2</column>
+            <column name="zone">E</column>
+            <column name="inventory_status">Not-Available</column>
+        </table>
+        <table name="warehouse_inventory">
+            <column name="id">2</column>
+            <column name="floor">1</column>
+            <column name="zone">A</column>
+            <column name="inventory_status">Available</column>
+        </table>
+        <table name="warehouse_inventory">
+            <column name="id">3</column>
+            <column name="floor">3</column>
+            <column name="zone">E</column>
+            <column name="inventory_status">Not-Available</column>
+        </table>
+        <table name="warehouse_inventory">
+            <column name="id">4</column>
+            <column name="floor">2</column>
+            <column name="zone">B</column>
+            <column name="inventory_status">Available</column>
+        </table>
+        <table name="warehouse_inventory">
+            <column name="id">5</column>
+            <column name="floor">1</column>
+            <column name="zone">C</column>
+            <column name="inventory_status">Not-Available</column>
+        </table>
+        <table name="warehouse_inventory">
+            <column name="id">6</column>
+            <column name="floor">4</column>
+            <column name="zone">C</column>
+            <column name="inventory_status">Available</column>
+        </table>
+        <table name="warehouse_inventory">
+            <column name="id">7</column>
+            <column name="floor">4</column>
+            <column name="zone">A</column>
+            <column name="inventory_status">Not-Available</column>
+        </table>
+        <table name="warehouse_inventory">
+            <column name="id">8</column>
+            <column name="floor">1</column>
+            <column name="zone">E</column>
+            <column name="inventory_status">Available</column>
+        </table>
+        <table name="warehouse_inventory">
+            <column name="id">9</column>
+            <column name="floor">3</column>
+            <column name="zone">A</column>
+            <column name="inventory_status">Available</column>
+        </table>
+        <table name="warehouse_inventory">
+            <column name="id">10</column>
+            <column name="floor">1</column>
+            <column name="zone">B</column>
+            <column name="inventory_status">Not-Available</column>
+        </table>
+    </database>
+</pma_xml_export>

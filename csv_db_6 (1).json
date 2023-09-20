@@ -1,0 +1,166 @@
+[
+{"type":"header","version":"5.2.1","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"csv_db 6"},
+{"type":"table","name":"customer","database":"csv_db 6","data":
+[
+{"id":"1","first_name":"awais","last_name":"rafi","customer_email":"awaisrafi2009@gmail.com","customer_address":"michaelkirch","contact_number":"1234567890","customer_review":"1"},
+{"id":"2","first_name":"rafi","last_name":"zulu","customer_email":"rafiawais3009@gmail.com","customer_address":"kirchmicahel","contact_number":"0987654321","customer_review":"2"},
+{"id":"3","first_name":"hewlett","last_name":"packard","customer_email":"hewlettpackard2909@gmail.com","customer_address":"kirchstrasse","contact_number":"1234567890","customer_review":"3"},
+{"id":"4","first_name":"pcikard","last_name":"hewlett","customer_email":"packardhewlet20009@gmail.com","customer_address":"michstrasse","contact_number":"1234509876","customer_review":"4"},
+{"id":"5","first_name":"bang","last_name":"olufsen","customer_email":"bangolufsen9002@gmail.com","customer_address":"bangkirchstrase","contact_number":"5432167890","customer_review":"5"},
+{"id":"6","first_name":"apple","last_name":"orange","customer_email":"appleorange2009@hotmail.com","customer_address":"bananaestrass","contact_number":"5674328901","customer_review":"6"},
+{"id":"7","first_name":"melon","last_name":"grape","customer_email":"grapielemone968@gmail.com","customer_address":"zebrstrasse","contact_number":"1234567890","customer_review":"7"},
+{"id":"8","first_name":"sezal","last_name":"elanor","customer_email":"rivercash2349@gmail.com","customer_address":"sweetkirch","contact_number":"2134567890","customer_review":"8"},
+{"id":"9","first_name":"adam","last_name":"berry","customer_email":"atlanicsazom2229@gmail.com","customer_address":"berlinkirch","contact_number":"1234567089","customer_review":"9"},
+{"id":"10","first_name":"cheezy","last_name":"whiteez","customer_email":"crispyzulu209@gmail.com","customer_address":"eggsykirch","contact_number":"1299567890","customer_review":"10"}
+]
+}
+,{"type":"table","name":"customer_order","database":"csv_db 6","data":
+[
+{"id":"1","date_of_order":"01-01-23","total_order_amount":"23.06","customer_id":"1","order_type":"0"},
+{"id":"2","date_of_order":"10-01-23","total_order_amount":"56.60","customer_id":"2","order_type":"0"},
+{"id":"3","date_of_order":"20-01-23","total_order_amount":"70.06","customer_id":"3","order_type":"0"},
+{"id":"4","date_of_order":"01-02-23","total_order_amount":"10.23","customer_id":"4","order_type":"0"},
+{"id":"5","date_of_order":"20-02-23","total_order_amount":"5.00","customer_id":"5","order_type":"0"},
+{"id":"6","date_of_order":"01-03-23","total_order_amount":"66.23","customer_id":"6","order_type":"0"},
+{"id":"7","date_of_order":"05-03-23","total_order_amount":"66.23","customer_id":"7","order_type":"0"},
+{"id":"8","date_of_order":"10-03-23","total_order_amount":"83.50","customer_id":"8","order_type":"0"},
+{"id":"9","date_of_order":"15-04-23","total_order_amount":"13.10","customer_id":"9","order_type":"0"},
+{"id":"10","date_of_order":"20-04-23","total_order_amount":"100.23","customer_id":"10","order_type":"0"},
+{"id":"11","date_of_order":"06-03-23","total_order_amount":"66.23","customer_id":"11","order_type":"11"}
+]
+}
+,{"type":"table","name":"customer_review","database":"csv_db 6","data":
+[
+{"id":"1","comment":"Very Good","comment_date":"01-01-23","product_list":"1"},
+{"id":"2","comment":"Good","comment_date":"10-01-23","product_list":"2"},
+{"id":"3","comment":"Very Bad","comment_date":"20-01-23","product_list":"3"},
+{"id":"4","comment":"Bad","comment_date":"01-02-23","product_list":"4"},
+{"id":"5","comment":"Excellent","comment_date":"20-02-23","product_list":"5"},
+{"id":"6","comment":"Good","comment_date":"01-03-23","product_list":"6"},
+{"id":"7","comment":"Excellent","comment_date":"05-03-23","product_list":"7"},
+{"id":"8","comment":"Very Bad","comment_date":"10-03-23","product_list":"8"},
+{"id":"9","comment":"Good","comment_date":"15-04-23","product_list":"9"},
+{"id":"10","comment":"Bad","comment_date":"20-04-23","product_list":"10"}
+]
+}
+,{"type":"table","name":"invoice","database":"csv_db 6","data":
+[
+{"id":"1","payment_type":"Cash","date_of_invoice":"01-01-23","payment_status":"Cleared","customer":"1","customer_order":"1","payment_info":"1"},
+{"id":"2","payment_type":"Credit","date_of_invoice":"10-01-23","payment_status":"Pending","customer":"2","customer_order":"2","payment_info":"2"},
+{"id":"3","payment_type":"Cash","date_of_invoice":"20-01-23","payment_status":"Cleared","customer":"3","customer_order":"3","payment_info":"3"},
+{"id":"4","payment_type":"Credit","date_of_invoice":"01-02-23","payment_status":"Cleared","customer":"4","customer_order":"4","payment_info":"4"},
+{"id":"5","payment_type":"Credit","date_of_invoice":"01-02-23","payment_status":"Cleared","customer":"5","customer_order":"5","payment_info":"5"},
+{"id":"6","payment_type":"Cash","date_of_invoice":"01-03-23","payment_status":"Pending","customer":"6","customer_order":"6","payment_info":"6"},
+{"id":"7","payment_type":"Cash","date_of_invoice":"05-03-23","payment_status":"Pending","customer":"7","customer_order":"7","payment_info":"7"},
+{"id":"8","payment_type":"Credit","date_of_invoice":"10-03-23","payment_status":"Cleared","customer":"8","customer_order":"8","payment_info":"8"},
+{"id":"9","payment_type":"Cash","date_of_invoice":"15-04-23","payment_status":"Pending","customer":"9","customer_order":"9","payment_info":"9"},
+{"id":"10","payment_type":"Credit","date_of_invoice":"20-04-23","payment_status":"Pending","customer":"10","customer_order":"10","payment_info":"10"}
+]
+}
+,{"type":"table","name":"order_list","database":"csv_db 6","data":
+[
+{"id":"1","order_quantity":"1","order_item_price":"23.06","customer_order":"1","product_list":"1"},
+{"id":"2","order_quantity":"1","order_item_price":"56.60","customer_order":"2","product_list":"2"},
+{"id":"3","order_quantity":"1","order_item_price":"70.06","customer_order":"3","product_list":"3"},
+{"id":"4","order_quantity":"1","order_item_price":"10.23","customer_order":"4","product_list":"4"},
+{"id":"5","order_quantity":"1","order_item_price":"5.00","customer_order":"5","product_list":"5"},
+{"id":"6","order_quantity":"1","order_item_price":"66.23","customer_order":"6","product_list":"6"},
+{"id":"7","order_quantity":"1","order_item_price":"66.23","customer_order":"7","product_list":"7"},
+{"id":"8","order_quantity":"1","order_item_price":"83.50","customer_order":"8","product_list":"8"},
+{"id":"9","order_quantity":"1","order_item_price":"13.10","customer_order":"9","product_list":"9"},
+{"id":"10","order_quantity":"1","order_item_price":"100.23","customer_order":"10","product_list":"10"}
+]
+}
+,{"type":"table","name":"order_type","database":"csv_db 6","data":
+[
+{"id":"1","order_delivery":"Home","delivery_vendor":"DHL"},
+{"id":"2","order_delivery":"Shop","delivery_vendor":"Fedex"},
+{"id":"3","order_delivery":"Shop","delivery_vendor":"DHL"},
+{"id":"4","order_delivery":"Home","delivery_vendor":"DHL"},
+{"id":"5","order_delivery":"Shop","delivery_vendor":"Fedex"},
+{"id":"6","order_delivery":"Home","delivery_vendor":"DHL"},
+{"id":"7","order_delivery":"Shop","delivery_vendor":"Fedex"},
+{"id":"8","order_delivery":"Home","delivery_vendor":"DHL"},
+{"id":"9","order_delivery":"Shop","delivery_vendor":"Fedex"},
+{"id":"10","order_delivery":"Home","delivery_vendor":"Fedex"}
+]
+}
+,{"type":"table","name":"payment_info","database":"csv_db 6","data":
+[
+{"id":"1","bank_name":"Nova Scotia","bank_address":"Ottawa Street","bank_email":"novabank@bnk.com","payment_type":"Cash"},
+{"id":"2","bank_name":"Chilie Bank","bank_address":"Santiago Street","bank_email":"chiliebank@bnk.com","payment_type":"Credit"},
+{"id":"3","bank_name":"Nova Scotia","bank_address":"Ottawa Street","bank_email":"novabank@bnk.com","payment_type":"Cash"},
+{"id":"4","bank_name":"Chilie Bank","bank_address":"Santiago Street","bank_email":"chiliebank@bnk.com","payment_type":"Credit"},
+{"id":"5","bank_name":"Nova Scotia","bank_address":"Ottawa Street","bank_email":"novabank@bnk.com","payment_type":"Cash"},
+{"id":"6","bank_name":"Chilie Bank","bank_address":"Santiago Street","bank_email":"chiliebank@bnk.com","payment_type":"Credit"},
+{"id":"7","bank_name":"Nova Scotia","bank_address":"Ottawa Street","bank_email":"novabank@bnk.com","payment_type":"Pay Order"},
+{"id":"8","bank_name":"Nova Scotia","bank_address":"Ottawa Street","bank_email":"novabank@bnk.com","payment_type":"Pay Order"},
+{"id":"9","bank_name":"Chilie Bank","bank_address":"Santiago Street","bank_email":"chiliebank@bnk.com","payment_type":"Cheque"},
+{"id":"10","bank_name":"Nova Scotia","bank_address":"Ottawa Street","bank_email":"novabank@bnk.com","payment_type":"Cash"}
+]
+}
+,{"type":"table","name":"product_list","database":"csv_db 6","data":
+[
+{"id":"1","product_name":"Printing Paper","product_price":"23.06","product_description":"Printing Paper with trees from Malaysia","supplier_info":"1","warehouse_inventory":"1"},
+{"id":"2","product_name":"Printer INK","product_price":"56.60","product_description":"Premium Quality INK - Black","supplier_info":"2","warehouse_inventory":"2"},
+{"id":"3","product_name":"Power Bank","product_price":"70.06","product_description":"Energy Certified Power Bank with long duration","supplier_info":"3","warehouse_inventory":"3"},
+{"id":"4","product_name":"Mouse","product_price":"10.23","product_description":"Computer Mouse with ergonomic Design","supplier_info":"4","warehouse_inventory":"4"},
+{"id":"5","product_name":"Cartoon Stickers","product_price":"5.00","product_description":"Kid Stickers for the Fridge","supplier_info":"5","warehouse_inventory":"5"},
+{"id":"6","product_name":"KitchenWare","product_price":"66.23","product_description":"Premium Imported Pans and Pots","supplier_info":"6","warehouse_inventory":"6"},
+{"id":"7","product_name":"Shaving Trimmer","product_price":"66.23","product_description":"Japanese Technology - Trimmer","supplier_info":"7","warehouse_inventory":"7"},
+{"id":"8","product_name":"PC Chair","product_price":"83.50","product_description":"Ready to assemble chair for PC","supplier_info":"8","warehouse_inventory":"8"},
+{"id":"9","product_name":"Laundry Bag","product_price":"13.10","product_description":"Fine Mesh long Lasting Laundry Bag ","supplier_info":"9","warehouse_inventory":"9"},
+{"id":"10","product_name":"Bed Mattress","product_price":"100.23","product_description":"Orthopaedic Recommended","supplier_info":"10","warehouse_inventory":"10"}
+]
+}
+,{"type":"table","name":"product_return","database":"csv_db 6","data":
+[
+{"id":"1","reason_of_return":"product was damaged in shipping","date_of_return":"06-06-23","product_list":"5","invoice":"5","customer_order":"5"},
+{"id":"2","reason_of_return":"Faulty Product","date_of_return":"10-08-23","product_list":"3","invoice":"3","customer_order":"3"},
+{"id":"3","reason_of_return":"Product notupto standard","date_of_return":"02-05-23","product_list":"7","invoice":"7","customer_order":"7"}
+]
+}
+,{"type":"table","name":"shipping_info","database":"csv_db 6","data":
+[
+{"id":"1","shipping_company":"DHL","contact_info":"456-789-986","email":"dhlcontact@dhl.com","address":"berlinstrasse","shipping_type":"Road"},
+{"id":"2","shipping_company":"DHL","contact_info":"456-789-986","email":"dhlcontact@dhl.com","address":"berlinstrasse","shipping_type":"AIR"},
+{"id":"3","shipping_company":"Fedex","contact_info":"654-789-986","email":"fedexcontact@dhl.com","address":"arcadestrasse","shipping_type":"AIR"},
+{"id":"4","shipping_company":"DHL","contact_info":"456-789-986","email":"dhlcontact@dhl.com","address":"berlinstrasse","shipping_type":"SHIP"},
+{"id":"5","shipping_company":"Fedex","contact_info":"654-789-986","email":"fedexcontact@dhl.com","address":"arcadestrasse","shipping_type":"AIR"},
+{"id":"6","shipping_company":"DHL","contact_info":"456-789-986","email":"dhlcontact@dhl.com","address":"berlinstrasse","shipping_type":"SHIP"},
+{"id":"7","shipping_company":"Fedex","contact_info":"654-789-986","email":"fedexcontact@dhl.com","address":"arcadestrasse","shipping_type":"AIR"},
+{"id":"8","shipping_company":"DHL","contact_info":"456-789-986","email":"dhlcontact@dhl.com","address":"berlinstrasse","shipping_type":"Road"},
+{"id":"9","shipping_company":"Fedex","contact_info":"654-789-986","email":"fedexcontact@dhl.com","address":"arcadestrasse","shipping_type":"AIR"},
+{"id":"10","shipping_company":"DHL","contact_info":"456-789-986","email":"dhlcontact@dhl.com","address":"berlinstrasse","shipping_type":"AIR"}
+]
+}
+,{"type":"table","name":"supplier_info","database":"csv_db 6","data":
+[
+{"id":"1","supplier_name":"Amsterdam Corp","supplier_contact_number":"456-654-123","supplier_email":"amsterdamcorp@gmail.com","supplier_address":"0","supplier_country":"0","shipping_info":"0"},
+{"id":"2","supplier_name":"Berlin Corp","supplier_contact_number":"456-456-123","supplier_email":"berlincorp@gmail.com","supplier_address":"0","supplier_country":"0","shipping_info":"0"},
+{"id":"3","supplier_name":"Helsinki Corp","supplier_contact_number":"416-624-183","supplier_email":"helsinki@gmail.com","supplier_address":"0","supplier_country":"0","shipping_info":"0"},
+{"id":"4","supplier_name":"Rome Corp","supplier_contact_number":"426-666-123","supplier_email":"romecorp@gmail.com","supplier_address":"0","supplier_country":"0","shipping_info":"0"},
+{"id":"5","supplier_name":"Madrid Corp","supplier_contact_number":"456-654-123","supplier_email":"madridcorp@gmail.com","supplier_address":"0","supplier_country":"0","shipping_info":"0"},
+{"id":"6","supplier_name":"Honolulu Corp","supplier_contact_number":"446-624-113","supplier_email":"honolulucorp@gmail.com","supplier_address":"0","supplier_country":"0","shipping_info":"0"},
+{"id":"7","supplier_name":"Adelaide Corp","supplier_contact_number":"987-622-023","supplier_email":"adelaidecorp@gmail.com","supplier_address":"0","supplier_country":"0","shipping_info":"0"},
+{"id":"8","supplier_name":"Perth Corp","supplier_contact_number":"416-654-133","supplier_email":"perthcorp@gmail.com","supplier_address":"0","supplier_country":"0","shipping_info":"0"},
+{"id":"9","supplier_name":"Hamburg Corp","supplier_contact_number":"456-604-113","supplier_email":"hamburgcorp@gmail.com","supplier_address":"0","supplier_country":"0","shipping_info":"0"},
+{"id":"10","supplier_name":"Lisbon Corp","supplier_contact_number":"436-614-123","supplier_email":"lisboncorp@gmail.com","supplier_address":"0","supplier_country":"0","shipping_info":"0"}
+]
+}
+,{"type":"table","name":"warehouse_inventory","database":"csv_db 6","data":
+[
+{"id":"1","floor":"2","zone":"E","inventory_status":"Not-Available"},
+{"id":"2","floor":"1","zone":"A","inventory_status":"Available"},
+{"id":"3","floor":"3","zone":"E","inventory_status":"Not-Available"},
+{"id":"4","floor":"2","zone":"B","inventory_status":"Available"},
+{"id":"5","floor":"1","zone":"C","inventory_status":"Not-Available"},
+{"id":"6","floor":"4","zone":"C","inventory_status":"Available"},
+{"id":"7","floor":"4","zone":"A","inventory_status":"Not-Available"},
+{"id":"8","floor":"1","zone":"E","inventory_status":"Available"},
+{"id":"9","floor":"3","zone":"A","inventory_status":"Available"},
+{"id":"10","floor":"1","zone":"B","inventory_status":"Not-Available"}
+]
+}
+]
